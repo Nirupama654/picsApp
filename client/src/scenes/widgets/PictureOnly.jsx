@@ -11,6 +11,7 @@ import {
   import WidgetWrapper from "components/WidgetWrapper";
   import { useDispatch, useSelector } from "react-redux";
   import { setPost } from "state";
+  import "./postStyle.css"
 
 const PostModal = ({
     postId,
@@ -66,13 +67,10 @@ const PostModal = ({
             transform: 'translate(-50%, -50%)',
             width: '80vh', // Set the width of the modal
             height: '90vh', // Set the maximum height of the modal
-            overflow: 'hidden', // Enable vertical scrolling if content exceeds the maximum height
+            overflow: 'auto', // Enable vertical scrolling if content exceeds the maximum height
             bgcolor: 'background.paper',
             boxShadow: 24,
-            pt : 5,
-            pb: 8,
-            pl : 5,
-            pr : 2,
+            p : 5,
             '@media (max-width: 600px)': {
                 width: '90%', /* Adjust modal width for smaller screens (e.g., smartphones) */
                 maxHeight: '90vh', /* Adjust maximum modal height for smaller screens */
@@ -88,7 +86,25 @@ const PostModal = ({
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
       </Typography>
-      {picturePath && (
+      {picturePath && (/\.(mp4|avi|mov)$/i.test(picturePath) ? 
+      <div className="image-grid">
+      <video autoPlay controls loop
+      style={{ borderRadius: "0.75rem", marginTop: "2rem"}}
+      >
+      <source 
+      src={`http://localhost:3001/assets/${picturePath}`}
+      type="video/mp4" 
+      maxWidth="50%"
+      height="50%"
+      objectFit="cover"
+      alt="post"
+      />
+      {/* Add more <source> elements for different video formats if needed */}
+      Your browser does not support the video tag.
+    </video>
+      </div>
+      : 
+      (
         <img
           width="80%"
           height="80%"
@@ -97,7 +113,7 @@ const PostModal = ({
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
           src={`http://localhost:3001/assets/${picturePath}`}
         />
-      )}
+      ) )}
       <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
@@ -143,4 +159,6 @@ const PostModal = ({
   };
 
   export default PostModal;
+
+
   

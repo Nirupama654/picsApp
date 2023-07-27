@@ -87,13 +87,27 @@ const PostWidget = ({
         <div className="image-grid" 
         onClick={handleOpen}
         >
+        {(/\.(mp4|avi|mov)$/i.test(picturePath) ? 
+      <video controls
+      style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}>
+      <source 
+      src={`http://localhost:3001/assets/${picturePath}`}
+      type="video/mp4"
+       />
+      {/* Add more <source> elements for different video formats if needed */}
+      Your browser does not support the video tag.
+    </video>
+      : 
+      (
         <img
-          width="100%"
-          height="auto"
+          width="80%"
+          height="80%"
+          objectFit="cover"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
           src={`http://localhost:3001/assets/${picturePath}`}
         />
+      ) )}
         <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">

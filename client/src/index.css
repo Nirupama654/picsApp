@@ -8,3 +8,14 @@ body,
   width: 100%;
   font-family: "Rubik", sans-serif;
 }
+
+/* Hide the scrollbar track */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Optionally, you can style the thumb (dragging handle) */
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
