@@ -38,7 +38,7 @@ const PostModal = ({
     const primary = palette.primary.main;
   
     const patchLike = async () => {
-      const response = await fetch(`http://192.168.226.112:3001//posts/${postId}/like`, {
+      const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ const PostModal = ({
       style={{ borderRadius: "0.75rem", marginTop: "2rem", height:"100%"}}
       >
       <source 
-      src={`http://192.168.226.112:3001/assets/${picturePath}`}
+      src={`http://localhost:3001/assets/${picturePath}`}
       type="video/mp4" 
       maxWidth="50%"
       maxHeight="100%"
@@ -114,7 +114,7 @@ const PostModal = ({
           objectFit="cover"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://192.168.226.112:3001/assets/${picturePath}`}
+          src={`http://localhost:3001/assets/${picturePath}`}
         />
       ) )}
       <FlexBetween mt="0.25rem">

@@ -38,7 +38,7 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://192.168.226.112:3001//posts/${postId}/like`, {
+    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ const PostWidget = ({
       <video controls
       style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}>
       <source 
-      src={`http://192.168.226.112:3001/assets/${picturePath}`}
+      src={`http://localhost:3001/assets/${picturePath}`}
       type="video/mp4"
        />
       {/* Add more <source> elements for different video formats if needed */}
@@ -105,7 +105,7 @@ const PostWidget = ({
           objectFit="cover"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://192.168.226.112:3001/assets/${picturePath}`}
+          src={`http://localhost:3001/assets/${picturePath}`}
         />
       ) )}
         <FlexBetween mt="0.25rem">
