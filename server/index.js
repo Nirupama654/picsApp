@@ -44,6 +44,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 /* ROUTES WITH FILES */
+app.get('/getIP', (req, res) => {
+  const clientIP = req.ip; // The client's IP address is available in the req.ip property
+  res.json({ ip: clientIP });
+});
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 

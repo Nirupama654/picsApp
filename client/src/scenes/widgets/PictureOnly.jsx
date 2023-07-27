@@ -38,7 +38,7 @@ const PostModal = ({
     const primary = palette.primary.main;
   
     const patchLike = async () => {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+      const response = await fetch(`http://192.168.226.112:3001//posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,6 +58,10 @@ const PostModal = ({
           }} 
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
+          sx={{
+            borderRadius :  "10px",
+            // border : "2px solid white"
+          }}
         >
           <Box
           sx={{
@@ -65,15 +69,15 @@ const PostModal = ({
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '80vh', // Set the width of the modal
-            height: '90vh', // Set the maximum height of the modal
-            overflow: 'auto', // Enable vertical scrolling if content exceeds the maximum height
+            width: '80vh', 
+            height: '90vh', 
+            overflow: 'auto', 
             bgcolor: 'background.paper',
             boxShadow: 24,
-            p : 5,
+            p:2,
             '@media (max-width: 600px)': {
-                width: '90%', /* Adjust modal width for smaller screens (e.g., smartphones) */
-                maxHeight: '90vh', /* Adjust maximum modal height for smaller screens */
+                width: '90%', 
+                maxHeight: '70%', 
               },
           }}
         >
@@ -89,29 +93,28 @@ const PostModal = ({
       {picturePath && (/\.(mp4|avi|mov)$/i.test(picturePath) ? 
       <div className="image-grid">
       <video autoPlay controls loop
-      style={{ borderRadius: "0.75rem", marginTop: "2rem"}}
+      style={{ borderRadius: "0.75rem", marginTop: "2rem", height:"100%"}}
       >
       <source 
-      src={`http://localhost:3001/assets/${picturePath}`}
+      src={`http://192.168.226.112:3001/assets/${picturePath}`}
       type="video/mp4" 
       maxWidth="50%"
-      height="50%"
+      maxHeight="100%"
       objectFit="cover"
       alt="post"
       />
-      {/* Add more <source> elements for different video formats if needed */}
       Your browser does not support the video tag.
     </video>
       </div>
       : 
       (
         <img
-          width="80%"
-          height="80%"
+          width="100%"
+          height="60%"
           objectFit="cover"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`http://192.168.226.112:3001/assets/${picturePath}`}
         />
       ) )}
       <FlexBetween mt="0.25rem">
@@ -126,32 +129,8 @@ const PostModal = ({
             </IconButton>
             <Typography>{likeCount}</Typography>
           </FlexBetween>
-
-          <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => setIsComments(!isComments)}>
-              <ChatBubbleOutlineOutlined />
-            </IconButton>
-            <Typography>{comments.length}</Typography>
-          </FlexBetween>
         </FlexBetween>
-
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
       </FlexBetween>
-      {isComments && (
-        <Box mt="0.5rem">
-          {comments.map((comment, i) => (
-            <Box key={`${name}-${i}`}>
-              <Divider />
-              <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                {comment}
-              </Typography>
-            </Box>
-          ))}
-          <Divider />
-        </Box>
-      )}
     </Box>
         </Modal>
       </div>
